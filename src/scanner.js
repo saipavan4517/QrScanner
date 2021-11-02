@@ -6,8 +6,6 @@ import QrReader from 'react-qr-reader';
 
 function Scanner() { 
   const [text, setText] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [scanResultFile, setScanResultFile] = useState('');
   const [scanResultWebCam, setScanResultWebCam] =  useState('');
   const classes = useStyles();
   const qrRef = useRef(null);
@@ -16,22 +14,12 @@ function Scanner() {
   const generateQrCode = async () => {
     try {
           const response = await QRCode.toDataURL(text);
-          setImageUrl(response);
+  
     }catch (error) {
       console.log(error);
     }
   }
-  const handleErrorFile = (error) => {
-    console.log(error);
-  }
-  const handleScanFile = (result) => {
-      if (result) {
-          setScanResultFile(result);
-      }
-  }
-  const onScanFile = () => {
-    qrRef.current.openImageDialog();
-  }
+
   const handleErrorWebCam = (error) => {
     console.log(error);
   }
